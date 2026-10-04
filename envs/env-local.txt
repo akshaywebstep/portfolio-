@@ -1,0 +1,23 @@
+# ==============================================================================
+# LOCAL ENVIRONMENT CONFIGURATION (.env)
+# ==============================================================================
+PORT=3000
+NODE_ENV=development
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+
+# ==============================================================================
+# MYSQL LOCAL DATABASE CONFIGURATION (MariaDB / XAMPP)
+# ==============================================================================
+DB_CONNECTION=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=akshay_portfolio
+DB_NAME=akshay_portfolio
+DB_USERNAME=root
+DB_USER=root
+DB_PASSWORD=
+
+# ==============================================================================
+# PRISMA DATABASE URL (Generated from above variables)
+# ==============================================================================
+DATABASE_URL="mysql://root:@localhost:3306/akshay_portfolio"

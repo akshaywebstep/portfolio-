@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Profile {
+  id           Int      @id @default(1)
+  name         String   @default("Akshay Kumar")
+  role         String   @default("Backend Developer")
+  subtitles    String   @db.Text
+  email        String   @default("kapilakshu848@gmail.com")
+  phone        String   @default("+91 7876060984")
+  location     String   @default("Himachal Pradesh, India")
+  address      String   @db.Text
+  availability String   @default("Immediate")
+  dob          String   @default("23 August 2002")
+  languages    String   @default("Hindi, English")
+  summary      String   @db.Text
+  updatedAt    DateTime @updatedAt
+}
+
+model Experience {
+  id          Int      @id @default(autoincrement())
+  company     String
+  location    String
+  role        String
+  period      String
+  type        String
+  order       Int      @default(0)
+  subsections String   @db.Text // JSON string of { title: string, points: string[] }[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id                Int      @id @default(autoincrement())
+  title             String
+  tagline           String   @db.Text
+  category          String
+  techStack         String   @db.Text // Comma separated technologies
+  metrics           String?  @db.Text
+  highlights        String   @db.Text // JSON string of string[]
+  architectureNotes String?  @db.Text
+  order             Int      @default(0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model SkillCategory {
+  id        Int      @id @default(autoincrement())
+  name      String
+  icon      String   @default("Server")
+  skills    String   @db.Text // Comma separated skills
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Education {
+  id          Int      @id @default(autoincrement())
+  degree      String
+  institution String
+  year        String
+  score       String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  subject   String?
+  message   String   @db.Text
+  createdAt DateTime @default(now())
+}
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String   // Hashed bcrypt password
+  name      String   @default("Akshay Kumar")
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
